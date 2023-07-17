@@ -9,7 +9,7 @@ const AddNote = () => {
     const [note, setNote] = useState({title: "", description :"", tag: ""})
     const handleClick = (e)=>{
         e.preventDefault();
-        addNote(note.title, note.description, note.tag = "default");
+        addNote(note.title, note.description, note.tag);
     }
 
     // It happens first. whenever we start typing on any kind of input it triger a change and
@@ -47,6 +47,20 @@ const AddNote = () => {
               className="form-control"
               id="description"
               placeholder="Description"
+              onChange={onChange}
+            />
+          </div>
+          <small id="emailHelp" className="form-text text-muted">
+          
+          </small>
+          <div className="form-group my-3">
+            <label htmlFor="exampleInputPassword1">Tag</label>
+            <input
+              type="text"
+              name= "tag"
+              className="form-control"
+              id="tag"
+              placeholder="Tag"
               onChange={onChange}
             />
           </div>
