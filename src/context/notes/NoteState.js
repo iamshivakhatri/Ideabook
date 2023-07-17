@@ -4,7 +4,7 @@ import { useState } from "react";
 const NoteState = (props)=>{
     const notesInitial = [
         {
-          "_id": "64b2d5c462f3148756b4df35",
+          "_id": "64b2d5c46322f3148756b4df305",
           "user": "64aed455670991b6d5b3d529",
           "title": "apple",
           "description": "buy an apple",
@@ -13,7 +13,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "64b2d5c662f3148756b4df37",
+          "_id": "64b2d5c6332f31485756b4df37",
           "user": "64aed455670991b6d5b3d529",
           "title": "apple",
           "description": "buy an apple",
@@ -22,7 +22,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "64b2eb0d24539184878498c8",
+          "_id": "64b2eb02d2434539184878498c8",
           "user": "64aed455670991b6d5b3d529",
           "title": "apple",
           "description": "buy an apple",
@@ -39,7 +39,7 @@ const NoteState = (props)=>{
         //API
        console.log("Adding a new note"); 
        const note =  {
-            "_id": "64b2eb0d24539184878498c8",
+            "_id": "6444b2eb0d2453339184878498c8",
             "user": "64aed455670991b6d5b3d529",
             "title": title,
             "description": description,
@@ -50,9 +50,16 @@ const NoteState = (props)=>{
         setNotes(notes.concat(note)); 
 
       }
-
+/** when we click the button then it trigers this function. it then uses filter method on original list of notes
+ * it filter by only allowing the item which id aren't equal to the original list.
+ */
       //Delete a note
-      const deleteNote = ()=>{
+      const deleteNote = (id)=>{
+        console.log("Deleting the node with id", id);
+        const newNotes = notes.filter((note)=>{
+            return note._id !== id;
+        })
+        setNotes(newNotes);
         
       }
       //Update a note

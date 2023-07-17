@@ -12,6 +12,9 @@ const AddNote = () => {
         addNote(note.title, note.description, note.tag = "default");
     }
 
+    // It happens first. whenever we start typing on any kind of input it triger a change and
+    //And input which is being changed is on the target at that point this e.target.name will give the name of the target input
+    // and e.target.value will give the letter, text which is written on the certain input
     const onChange = (e)=>{
         setNote({...note, [e.target.name]: [e.target.value]})
 
