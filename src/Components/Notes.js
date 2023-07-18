@@ -5,21 +5,25 @@ import noteContext from "../context/notes/noteContext";
 
 export const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNotes } = context;
+  const { notes, getNotes, editNote } = context;
 
   useEffect(() => {
     getNotes();
     // eslint-disable-next-line
   }, []);
 
-  const [note, setNote] = useState({etitle: "", edescription :"", etag: ""})
+  const [note, setNote] = useState({id:"", etitle: "", edescription :"", etag: ""})
   const updateNote = (currentNote) => {
     ref.current.click();
     console.log("edit button is clicked");
-    setNote({etitle:currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
+    setNote({id: currentNote._id, etitle:currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
   };
   const handleClick = (e)=>{
     e.preventDefault();
+    editNote(note.id, note.etitle, note.edescription, note.etag);
+    console.log(note.id, note.etitle, note.edescription, note.etag);
+    refClose.current.click();
+
 }
   const onChange = (e)=>{
     setNote({...note, [e.target.name]: [e.target.value]})
@@ -28,6 +32,7 @@ export const Notes = () => {
 
 
   const ref = useRef(null);
+  const refClose = useRef(null);
 
   return (
     <div>
@@ -68,7 +73,7 @@ export const Notes = () => {
               </button>
             </div>
             <div className="modal-body">
-              /**Form begins here */
+       
               <form>
                 <div className="form-group my-3">
                   <label htmlFor="exampleInputEmail1">Title</label>
@@ -113,11 +118,12 @@ export const Notes = () => {
                   />
                 </div>
               </form>
-              /**Form ends here */
+        
 
             </div>
             <div className="modal-footer">
               <button
+                ref = {refClose}
                 type="button"
                 className="btn btn-secondary"
                 data-dismiss="modal"

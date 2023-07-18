@@ -106,26 +106,40 @@ const NoteState = (props) => {
   //Update a note
   const editNote = async (id, title, description, tag) => {
     //API
-    const response = await fetch(`${host}/api/notes/updatenotes/${id}`, {
+     // Convert title to string
+     const noteTitle = Array.isArray(title) ? title[0] : title;
+  
+     // Convert description to string
+     const noteDescription = Array.isArray(description) ? description[0] : description;
+   
+     // Convert tag to string
+     const noteTag = Array.isArray(tag) ? tag[0] : tag;
+
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+        
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhZWQ0NTU2NzA5OTFiNmQ1YjNkNTI5In0sImlhdCI6MTY4OTUyMzc1MX0.AXlkf88gfCBdpBSHQ-gqjc6LOBUwCW2roGzRpDZaH1Y",
       },
-      body: JSON.stringify({title,description,tag})
+      body: JSON.stringify({ title: noteTitle, description: noteDescription, tag: noteTag }),
     });
     const json = response.json();
 
     // Logic to edit in client
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    let newNotes = JSON.parse(JSON.stringify(notes));
+    for (let index = 0; index < newNotes.length; index++) {
+      let element = newNotes[index];
       if (element._id === id) {
         element.title = title;
         element.description = description;
         element.tag = tag;
+        break;
       }
+      
     }
+    setNotes(newNotes);
   };
 
   return (
