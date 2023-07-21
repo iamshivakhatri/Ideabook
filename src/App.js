@@ -5,6 +5,8 @@ import About from "./Components/About";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NoteState from "./context/notes/NoteState";
 import Alert from "./Components/Alert";
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
 
 
 
@@ -26,7 +28,10 @@ function App() {
               }
             />
             <Route path="/About" element={<About />} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<Signup />} />
    
+
           </Routes>
           </div>
         </Router>

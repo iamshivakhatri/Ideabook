@@ -20,6 +20,7 @@ router.post(
   ],
   async (req, res) => {
     //if there are errors return bad request and the errors
+    
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -61,8 +62,8 @@ router.post(
       // .catch(err=> {console.log(err)
       // res.json({error: 'please enter a unique value for email', message: err.message})});
       // //res.send(req.body); same thing like then(user => res.json(user))
-
-      res.send(authToken);
+      
+      res.json(authToken);
       //catch a new error
     } catch (error) {
       console.log(error.message);
@@ -82,6 +83,7 @@ router.post(
      
     ],
     async (req, res) => {
+      let success = false;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
           return res.status(400).json({ errors: errors.array() });
@@ -102,7 +104,8 @@ router.post(
                 }
               }
               const authToken = jwt.sign(data, JWT_SECRET);
-              res.json({authToken })
+              success = true;
+              res.json({authToken, success })
         }catch(error)  {
             console.log(error.message);
       res.status(500).send("Internal server occured");

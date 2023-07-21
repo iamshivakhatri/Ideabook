@@ -19,12 +19,13 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/about">About</Link>
                         </li>
-
                     </ul>
+
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <Link href="#" className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
+                        <Link href="#" className="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
                     </form>
+
                 </div>
             </div>
         </nav>
