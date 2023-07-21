@@ -17,6 +17,7 @@ export const Notes = () => {
     ref.current.click();
     console.log("edit button is clicked");
     setNote({id: currentNote._id, etitle:currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
+    console.log(currentNote._id, "64b7e8cb27a6eea9ae3b8f4a should clicked");
   };
   const handleClick = (e)=>{
     e.preventDefault();
@@ -86,6 +87,8 @@ export const Notes = () => {
                     placeholder="Enter the title"
                     onChange={onChange}
                     value={note.etitle}
+                    minLength={5}
+                    required
                   />
                   <small
                     id="emailHelp"
@@ -102,6 +105,8 @@ export const Notes = () => {
                     placeholder="edescription"
                     onChange={onChange}
                     value = {note.edescription}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <small id="emailHelp" className="form-text text-muted"></small>
@@ -140,6 +145,9 @@ export const Notes = () => {
 
       <div className="row my-3">
         <h2>Your note</h2>
+        <div className="container">  
+        {notes.length === 0? 'No notes to display': ""}
+        </div>
 
         {notes.map((note) => {
           return (
@@ -151,3 +159,6 @@ export const Notes = () => {
   );
 };
 export default Notes;
+
+
+

@@ -10,13 +10,15 @@ const AddNote = () => {
     const handleClick = (e)=>{
         e.preventDefault();
         addNote(note.title, note.description, note.tag);
+        
     }
 
     // It happens first. whenever we start typing on any kind of input it triger a change and
     //And input which is being changed is on the target at that point this e.target.name will give the name of the target input
     // and e.target.value will give the letter, text which is written on the certain input
     const onChange = (e)=>{
-        setNote({...note, [e.target.name]: [e.target.value]})
+       /**  setNote({...note, [e.target.name]: [e.target.value]})*/
+        setNote({ ...note, [e.target.name]: e.target.value });
 
     }
 
@@ -65,7 +67,7 @@ const AddNote = () => {
             />
           </div>
         
-          <button type="submit" className="btn btn-primary" onClick={handleClick}>
+          <button disabled = {note.title.length < 3 || note.description.length < 3} type="submit" className="btn btn-primary" onClick={handleClick}>
             Submit
           </button>
         </form>

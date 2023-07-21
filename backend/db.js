@@ -1,11 +1,12 @@
 console.log("Hi i am on db.js");
 
 const mongoose = require('mongoose');
-const mongoURI = "mongodb://localhost:27017/ideabook";
+const mongoURI = "mongodb://localhost:27017/Notecloud";
+
 
 const connectToMongo = ()=>{
     mongoose.connect(mongoURI, () => {
-        console.log("Connected successfully on the mongodb")
+        console.log("Connected successfully on the mongodb");
     })
 }
 
