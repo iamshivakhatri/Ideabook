@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 const Login = (props) =>  {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,10 +23,14 @@ const Login = (props) =>  {
     //Logic to add in the client
     const json = await response.json();
     console.log(json);
+    
     if(json.success){
-        localStorage.setItem('token', json.authtoken);
-        navigate("/");
+        localStorage.setItem('token', json.authToken);
+        console.log("this is from login token value", localStorage.getItem('token'));
         props.showAlert("Logged in successfully", "success");
+        navigate("/");
+
+        
         
     }else{
         props.showAlert("Invalid Credentials", "danger");
@@ -37,6 +42,7 @@ const Login = (props) =>  {
   };
   return (
     <div>
+     <h2>Login to continue</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
@@ -73,7 +79,10 @@ const Login = (props) =>  {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
+        
       </form>
+      
+      
     </div>
   );
 };

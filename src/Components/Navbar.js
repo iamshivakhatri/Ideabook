@@ -1,11 +1,18 @@
 import React, {  } from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     let location = useLocation();
+    let navigate = useNavigate();
+    
+    const logout = ()=>{
+        localStorage.removeItem('token');
+        navigate("/login");
+    }
     
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">IdeaBook</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,10 +28,10 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <form className="d-flex">
+                    {!localStorage.getItem('token') ?<form className="d-flex">
                         <Link href="#" className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
                         <Link href="#" className="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
-                    </form>
+                    </form>: <button className='btn btn-primary' onClick={logout}> Logout </button>}
 
                 </div>
             </div>
