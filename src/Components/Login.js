@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 const Login = () =>  {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     //localhost:5000/api/auth/login
@@ -43,7 +44,8 @@ const Login = () =>  {
             aria-describedby="emailHelp"
             placeholder="Enter email"
             value={credentials.email}
-            
+            required
+            minLength={5}
           />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -59,6 +61,8 @@ const Login = () =>  {
             name="password"
             placeholder="Password"
             value={credentials.password}
+            required
+            minLength={5}
           />
         </div>
         <button type="submit" className="btn btn-primary">

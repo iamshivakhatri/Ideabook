@@ -62,7 +62,7 @@ export const Notes = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Edit Note
+                Edit Project
               </h5>
               <button
                 type="button"
@@ -144,9 +144,9 @@ export const Notes = () => {
       </div>
 
       <div className="row my-3">
-        <h2>Your note</h2>
+        <h2>Your Projects</h2>
         <div className="container">  
-        {notes.length === 0? 'No notes to display': ""}
+        {notes.length === 0? 'No Projects to display': ""}
         </div>
 
         {notes.map((note) => {

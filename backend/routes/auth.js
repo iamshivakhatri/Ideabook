@@ -19,12 +19,13 @@ router.post(
     body("password", "Enter a valid password").isLength({ min: 5 }),
   ],
   async (req, res) => {
+    let success = false;
     //if there are errors return bad request and the errors
     
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
 
@@ -37,7 +38,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "Sorry a user with this email already exists" });
+          .json({success, error: "Sorry a user with this email already exists" });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -62,8 +63,8 @@ router.post(
       // .catch(err=> {console.log(err)
       // res.json({error: 'please enter a unique value for email', message: err.message})});
       // //res.send(req.body); same thing like then(user => res.json(user))
-      
-      res.json(authToken);
+      success = true;
+      res.json({success, authToken});
       //catch a new error
     } catch (error) {
       console.log(error.message);
